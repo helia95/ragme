@@ -16,9 +16,24 @@
     University of Trento | Picsart AI Research
     <br>
     <br>
-        <a href="https://arxiv.org/abs/2310.08465"><img src='https://img.shields.io/badge/arXiv-2310.08465-b31b1b.svg'></a>
+        <a href=""><img src=""></a>
   </p>
 
+>**TL;DR:** we train a conditioned augmented verison of T2V models to improve the motion of the generated videos, exploiting the grounding signals form the retrived samples.  
+
+
+<p align="center">
+  <img src="assets/method.png"/>
+</p>
+
+## Setup
+**Environment** The python environment can be created with conda with
+```bash
+conda env create -f environment.yml
+conda activate ragme
+```
+
+**Pretrained Models** can be downlaoded from [this link](https://drive.google.com/drive/folders/1cAWE8VzOifINQyBK12o-EorDk7QzLWyZ?usp=drive_link)
 
 
 
@@ -72,10 +87,6 @@ python inference_txt.py
 ## Citation
 Please cite this work as follows if you find it useful!
 
-```bibtex
-
-
-```
 
 ## Acknowledgements
-This repo builds heavey on [FAISS](https://github.com/facebookresearch/faiss) and [clip-video-encode](https://github.com/iejMac/clip-video-encode) for the retrieval component, thanks to the autorhs for the amazing resources. We build our models on the base [Zeroscope T2V Model](https://huggingface.co/cerspense/zeroscope_v2_576w), lastly we thank the authors of [Motion Director](https://github.com/showlab/MotionDirector) for open-sourcing their code.
+This repo builds heavey on [FAISS](https://github.com/facebookresearch/faiss) and [clip-video-encode](https://github.com/iejMac/clip-video-encode) for the retrieval component, [Zeroscope](https://huggingface.co/cerspense/zeroscope_v2_576w) as the base T2V model, and [Motion Director](https://github.com/showlab/MotionDirector) for finetuning scripts. Thanks to all the authors for the amazing resources and for open-sourcing their code.

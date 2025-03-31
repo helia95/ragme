@@ -23,7 +23,7 @@ from diffusers import TextToVideoSDPipeline, DDPMScheduler
 from faiss.utils import l2_normalise
 
 from utils import load_primary_models, tensor_to_vae_latent, export_to_video
-from utils import instantiate_from_config, fix_config
+from utils import instantiate_from_config
 from tqdm import tqdm
 from safetensors.torch import load_file
 
@@ -317,18 +317,15 @@ def main(checkpoint_path : Path,
     checkpoint_path = Path(checkpoint_path)
     config = OmegaConf.load(checkpoint_path / "config.yaml")
     checkpoint_path = natsorted(list((checkpoint_path / "checkpoints").glob("*")))[-1]
-    print(f"Evaluating: {checkpoint_path}")
-
 
     # Load the controller
-    config = fix_config(config)
     controller = instantiate_from_config(config.controller_config)
     
     print(f"-> Loading Controller Weights...")
     weights = load_file(checkpoint_path / "controller.safetensors")
     controller.load_state_dict(weights, strict=True)
     del weights
-    print("\tController weights loaded!")
+    print("Controller weights loaded!")
 
     # Create the output path
     output_dir = Path(opt.output_dir) / f"{checkpoint_path.parent.parent.name}"
@@ -343,7 +340,7 @@ def main(checkpoint_path : Path,
 
     # Load the pipeline
     pipeline = TextToVideoSDPipeline.from_pretrained(
-        config.pretrained_model_path,
+        opt.zeroscope_path,
         text_encoder=text_encoder,
         vae=vae,
         unet=unet
@@ -352,7 +349,7 @@ def main(checkpoint_path : Path,
     # Load CLIP 
     clip_model, _, clip_preprocess = open_clip.create_model_and_transforms('ViT-B-32', pretrained='openai', device=accelerator.device)
 
-    for idx, batch in tqdm(enumerate(dataloader), desc="Processing batches...", total=len(dataloader)):
+    for idx, batch in tqdm(enumerate(dataloader), desc="Generating videos ...", total=len(dataloader)):
         prompt_list, nn_captions, nn_videos, nn_embeddings, cond_attn_mask, cond_encoder_attn_mask = batch
         curr_bs = len(prompt_list)
         if opt.save_with_prompt:

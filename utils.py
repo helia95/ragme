@@ -36,12 +36,6 @@ def get_obj_from_str(string, reload=False):
         importlib.reload(module_imp)
     return getattr(importlib.import_module(module, package=None), cls)
 
-def fix_config(config):
-    if 'target' not in config.controller_config:
-        config.controller_config.target = 'controller.controller.Controller'
-        config.controller_config.params = config.controller_config
-    return config
-
 def load_primary_models(pretrained_model_path):
     noise_scheduler = DDPMScheduler.from_pretrained(pretrained_model_path, subfolder="scheduler")
     tokenizer = CLIPTokenizer.from_pretrained(pretrained_model_path, subfolder="tokenizer")
