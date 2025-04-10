@@ -16,7 +16,7 @@
     University of Trento | Picsart AI Research
     <br>
     <br>
-        <a href=""><img src=""></a>
+        [![arXiv](https://img.shields.io/badge/arXiv-2504.06672-b31b1b?style=for-the-badge&logo=arxiv&logoColor=white)](https://arxiv.org/abs/2504.06672)
   </p>
 
 >**TL;DR:** we train a conditioned augmented verison of T2V models to improve the motion of the generated videos, exploiting the grounding signals form the retrived samples.  
@@ -83,10 +83,20 @@ python retrieval_txt.py --txt /prompt/embedding/path/ --output /output/path/
 python inference_txt.py
 ```
 
-
 ## Citation
 Please cite this work as follows if you find it useful!
 
+```
+@misc{peruzzo2025ragmeretrievalaugmentedvideo,
+      title={RAGME: Retrieval Augmented Video Generation for Enhanced Motion Realism}, 
+      author={Elia Peruzzo and Dejia Xu and Xingqian Xu and Humphrey Shi and Nicu Sebe},
+      year={2025},
+      eprint={2504.06672},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2504.06672}, 
+}
+```
 
 ## Acknowledgements
 This repo builds heavey on [FAISS](https://github.com/facebookresearch/faiss) and [clip-video-encode](https://github.com/iejMac/clip-video-encode) for the retrieval component, [Zeroscope](https://huggingface.co/cerspense/zeroscope_v2_576w) as the base T2V model, and [Motion Director](https://github.com/showlab/MotionDirector) for finetuning scripts. Thanks to all the authors for the amazing resources and for open-sourcing their code.
