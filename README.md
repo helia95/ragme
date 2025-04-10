@@ -16,7 +16,9 @@
     University of Trento | Picsart AI Research
     <br>
     <br>
-        [![arXiv](https://img.shields.io/badge/arXiv-2504.06672-b31b1b?style=for-the-badge&logo=arxiv&logoColor=white)](https://arxiv.org/abs/2504.06672)
+  
+  [![arXiv](https://img.shields.io/badge/arXiv-2504.06672-b31b1b?style=for-the-badge&logo=arxiv&logoColor=white)](https://arxiv.org/abs/2504.06672)
+  
   </p>
 
 >**TL;DR:** we train a conditioned augmented verison of T2V models to improve the motion of the generated videos, exploiting the grounding signals form the retrived samples.  
